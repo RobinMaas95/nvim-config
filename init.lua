@@ -692,6 +692,7 @@ require('lazy').setup({
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
 
             local blink_capabilities = require('blink.cmp').get_lsp_capabilities()
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             server.capabilities = vim.tbl_deep_extend('force', server.capabilities or {}, capabilities, blink_capabilities)
             require('lspconfig')[server_name].setup(server)
           end,
